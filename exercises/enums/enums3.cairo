@@ -2,7 +2,6 @@
 // Address all the TODOs to make the tests pass!
 // Execute `starklings hint enums3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 #[derive(Drop, Copy)]
 enum Message { 
@@ -53,11 +52,13 @@ impl StateImpl of StateTrait {
 
     fn process(
         ref self: State, message: Message
-    ) {
-        message::Quit(()) => self.quit()
-        Message::Move(p) => self.move_position(p),
-        Message::Echo(s) => self.echo(s),
-        Message::ChangeColor(c) => self.change_color(c),
+    ) { 
+        match message {
+            Message::Quit(()) => self.quit(),
+            Message::Move(p) => self.move_position(p),
+            Message::Echo(s) => self.echo(s),
+            Message::ChangeColor(c) => self.change_color(c),
+        }
     }
 }
 
