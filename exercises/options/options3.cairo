@@ -1,7 +1,11 @@
-// options3.cairo
+ // options3.cairo
 // Execute `starklings hint options3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+
+
+use option::OptionTrait;
+use debug::PrintTrait;
+use array::ArrayTrait;
 
 #[derive(Drop)]
 struct Student {
@@ -37,8 +41,17 @@ fn display_grades(student: @Student, index: usize) {
     // TODO: Modify the following lines so that if there is a grade for the course, it is printed.
     //       Otherwise, print "No grade".
     // 
-    println!("grade is {}", course.unwrap());
-    display_grades(student, index + 1);
+
+    match course {
+        Option::Some(course) => {
+            course.print()
+        },
+        Option::None(()) => {
+            ('No grade').print()
+        }
+    }
+    //course.unwrap().print();
+    //display_grades(student, index + 1);
 }
 
 
